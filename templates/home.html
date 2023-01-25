@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<form action="score" method="post">
+
+    {% csrf_token %}
+
+    Enter Estimated Target: <input type="text" name="estarget"/><br/>
+    Enter Acheived Target: <input type="text" name="actarget"/><br/>
+
+    <input type="submit">
+</form>
+
+{% endblock %}

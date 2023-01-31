@@ -3,14 +3,32 @@
 {% block content %}
 
 
-<form action="score" method="post">
-
+<form method="post">
     {% csrf_token %}
-
-    Enter Estimated Target: <input type="text" name="estarget"/><br/>
-    Enter Acheived Target: <input type="text" name="actarget"/><br/>
-
-    <input type="submit">
+    <h3>Entry Form:</h3>
+    Enter Estimated Target: <input type="number" name="estarget" id="esTarget"/><br/>
+    Enter Acheived Target: <input type="number" name="actarget" id="acTarget"/><br/>
+    Score Obtained in % <input  readonly type="number" id="score" name="score"/><br/>
+    Bonus Obtained in % <input readonly type="number" id="bonus" name="bonus"/><br/>
+    Enter Date: <input type="date" name="date"/><br/>
+    Enter Time: <input type="time" name="time"/><br/>
+    <input type="submit" class="submit-btn">
 </form>
+<div class="production-container">
+    <h3>Production Data:</h3>
+    {% for n in displayData %}
+    <div class="display-container">
+        <p>Id: <span class="data">{{n.id}}</span></p>
+        <p>Estimated target: <span class="data">{{n.es_target}}</span></p>
+        <p>Acheived target: <span class="data">{{n.ac_target}}</span></p>
+        <p>Score: <span class="data">{{n.score}} </span></p>
+        <p>Bonus: <span class="data"> {{n.bonus}}</span></p>
+        <p>Date: <span class="data"> {{n.date}}</span></p>
+        <p>Time: <span class="data"> {{n.time}}</span></p>
+    </div>
+    {% endfor %}
+</div>
+{% load static %}
+<script src="{% static 'js/logic.js' %}"></script>
 
 {% endblock %}
